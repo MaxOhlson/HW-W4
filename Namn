@@ -1,0 +1,36 @@
+// The function to analyse:
+function palindrome_distance(lst) {
+    if (is_null(lst)) {
+        return 0;
+    } else if (is_null(tail(lst))) {
+        return 0;
+    } else if (head(lst) === last(lst)) {
+        return palindrome_distance(tail(drop_last(lst)));
+    } else {
+        const c1 = 1 + palindrome_distance(drop_last(lst));
+        const c2 = 1 + palindrome_distance(tail(lst));
+        return math_min(c1, c2);
+    }
+}
+// Helper function to return the last element of list `lst,
+// has linear running time
+function last(lst) {
+    return is_null(tail(lst)) ? head(lst) : last(tail(lst));
+}
+// Helper function to return the list `lst without the last element,
+// has linear running time
+function drop_last(lst) {
+    return is_null(tail(lst)) ? null : pair(head(lst), drop_last(tail(lst)));
+}
+
+
+Your task is to find the order of growth of the running time of a given function on lists of numbers, by first finding a recurrence relation that describes the worst-case running time, and then solving the recurrence.
+
+Before solving the recurrence relation, replace all polynomial coefficients with either 0 or 1, according to the conventions we use in this course.
+
+Write down your derivation of the recurrence relation and your solution of it as comments, not code. (Source Academy does not support handins in any other format than Source code, and we don't want to switch back and forth between doing homeworks in Source Academy and Studium.)
+
+
+show all your steps when deriving and solving the recurrence relation
+
+assume that the helper functions have linear running time, i.e. you do not need to analyze the complexity of the helper functions
